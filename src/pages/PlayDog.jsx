@@ -42,7 +42,7 @@ function ourReducer(draft, action) {
       }
       return;
     case "startPlaying":
-      draft.timeRemaining = 30;
+      draft.timeRemaining = 40;
       draft.points = 0;
       draft.strikes = 0;
       draft.playing = true;
@@ -164,10 +164,10 @@ function PlayDog() {
   }, [state.fetchCount]);
 
   return (
-    <div>
+    <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
       {state.currentQuestion && (
         <>
-          <p className="text-center">
+          <p className="text-center py-8">
             <span className="text-zinc-400 mr-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +175,8 @@ function PlayDog() {
                 height="32"
                 fill="currentColor"
                 className={
-                  "inline-block " + (state.playing ? "animate-spin" : "")
+                  "inline-block text-black " +
+                  (state.playing ? "animate-spin" : "")
                 }
                 viewBox="0 0 16 16"
               >
@@ -183,7 +184,7 @@ function PlayDog() {
                 <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z" />
                 <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
               </svg>
-              <span className="font-mono text-4xl relative top-2 ml-3">
+              <span className="font-mono text-4xl relative top-2 ml-3 text-black">
                 0:
                 {state.timeRemaining < 10
                   ? "0" + state.timeRemaining
@@ -205,7 +206,7 @@ function PlayDog() {
           <h1 className="text-center font-bold pt-3 pb-10 break-all text-4xl md:text-7xl">
             {state.currentQuestion.breed}
           </h1>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 px-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 px-5 md:py-9 pb-52">
             {state.currentQuestion.photos.map((photo, index) => {
               return (
                 <div
@@ -224,7 +225,7 @@ function PlayDog() {
       {state.playing == false &&
         Boolean(state.bigCollection.length) &&
         !state.currentQuestion && (
-          <p className="text-center fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center">
+          <p className="text-center fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
             <button
               onClick={() => dispatch({ type: "startPlaying" })}
               className="text-white bg-gradient-to-b from-indigo-500 to-indigo-600 px-4 py-3 rounded text-2xl font-bold"
@@ -267,19 +268,20 @@ function PlayDog() {
               <p className="mb-5">
                 Your all-time high score: {state.highScore}
               </p>
-
-              <button
-                onClick={() => dispatch({ type: "startPlaying" })}
-                className="text-white bg-gradient-to-b from-indigo-500 to-indigo-600 px-4 py-3 rounded text-lg font-bold"
-              >
-                Play again
-              </button>
-              <Link
-                to="/"
-                className="inline-block bg-slate-600 py-2 px-6 rounded mt-8 text-white hover:bg-slate-500 transition-all duration-200"
-              >
-                &larr; Back
-              </Link>
+              <div className="flex md:flex-row flex-col md:space-x-12 space-y-4 py-4 justify-center">
+                <button
+                  onClick={() => dispatch({ type: "startPlaying" })}
+                  className="text-white bg-gradient-to-b from-indigo-500 to-indigo-600 px-4 py-1 rounded text-lg font-bold"
+                >
+                  Play again
+                </button>
+                <Link
+                  to="/"
+                  className="inline-block bg-slate-600 py-3 px-6 rounded mt-8 text-white hover:bg-slate-500 transition-all duration-200"
+                >
+                  &larr; Back
+                </Link>
+              </div>
             </div>
           </div>
         )}

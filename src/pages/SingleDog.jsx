@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function SingleDog() {
   const [dog, setDog] = useState([]);
@@ -31,9 +33,13 @@ export default function SingleDog() {
             className="grid grid-cols-1 gap-8 p-8 md:grid-cols-2 md:place-items-center"
           >
             <article>
-              <img
+              <LazyLoadImage
+                width="100%"
+                min-height="144"
+                effect="blur"
                 src={`https://cdn2.thedogapi.com/images/${item.reference_image_id}.jpg`}
                 alt={item.name}
+                className="rounded-2xl"
               />
             </article>
             <article>
@@ -72,13 +78,14 @@ export default function SingleDog() {
                   {item.temperament}
                 </li>
               </ul>
-
-              <Link
-                to="/"
-                className="inline-block bg-slate-600 py-2 px-6 rounded mt-8 text-white hover:bg-slate-500 transition-all duration-200"
-              >
-                &larr; Back
-              </Link>
+              <div className="flex justify-center py-4">
+                <Link
+                  to="/"
+                  className="inline-block bg-slate-600 py-2 px-6 rounded mt-8 text-white hover:bg-slate-500 transition-all duration-200"
+                >
+                  &larr; Back
+                </Link>
+              </div>
             </article>
           </div>
         ))}
