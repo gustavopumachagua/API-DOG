@@ -93,7 +93,6 @@ export default function Home() {
                 Play Dog
               </Link>
             </div>
-
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3 my-10 lg:my-20">
               {!searched ? (
                 dogs.map((dog) => (
@@ -103,15 +102,23 @@ export default function Home() {
                     className="bg-slate-700 p-4 rounded hover:bg-slate-600 transition-all duration-200"
                   >
                     <article>
-                      <LazyLoadImage
-                        width="100%"
-                        min-height="144"
-                        effect="blur"
-                        src={dog.image.url}
-                        alt={dog.name}
-                        loading="lazy"
-                        className="rounded md:h-72 w-full object-cover"
-                      />
+                      {dog.reference_image_id ? (
+                        <LazyLoadImage
+                          width="100%"
+                          min-height="144"
+                          effect="blur"
+                          src={`https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`}
+                          alt={dog.name}
+                          className="rounded md:h-72 w-full object-cover"
+                        />
+                      ) : (
+                        <div className="bg-gray-300 rounded md:h-72 w-full flex items-center justify-center">
+                          <p className="text-black text-sm">
+                            No image available
+                          </p>
+                        </div>
+                      )}
+
                       <h3 className="text-white text-lg font-bold mt-4">
                         {dog.name}
                       </h3>
@@ -128,14 +135,23 @@ export default function Home() {
                       className="bg-slate-700 p-4 rounded hover:bg-slate-600 transition-all duration-200"
                     >
                       <article>
-                        <LazyLoadImage
-                          width="100%"
-                          min-height="144"
-                          effect="blur"
-                          src={`https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`}
-                          alt={dog.name}
-                          className="rounded md:h-72 w-full object-cover"
-                        />
+                        {dog.reference_image_id ? (
+                          <LazyLoadImage
+                            width="100%"
+                            min-height="144"
+                            effect="blur"
+                            src={`https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`}
+                            alt={dog.name}
+                            className="rounded md:h-72 w-full object-cover"
+                          />
+                        ) : (
+                          <div className="bg-gray-300 rounded md:h-72 w-full flex items-center justify-center">
+                            <p className="text-black text-sm">
+                              No image available
+                            </p>
+                          </div>
+                        )}
+
                         <h3 className="text-white text-lg font-bold mt-4">
                           {dog.name}
                         </h3>

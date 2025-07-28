@@ -33,14 +33,20 @@ export default function SingleDog() {
             className="grid grid-cols-1 gap-8 p-8 md:grid-cols-2 md:place-items-center"
           >
             <article>
-              <LazyLoadImage
-                width="100%"
-                min-height="144"
-                effect="blur"
-                src={`https://cdn2.thedogapi.com/images/${item.reference_image_id}.jpg`}
-                alt={item.name}
-                className="rounded-2xl"
-              />
+              {item.reference_image_id ? (
+                <LazyLoadImage
+                  width="100%"
+                  min-height="144"
+                  effect="blur"
+                  src={`https://cdn2.thedogapi.com/images/${item.reference_image_id}.jpg`}
+                  alt={item.name}
+                  className="rounded-2xl"
+                />
+              ) : (
+                <div className="bg-gray-300 rounded-2xl h-72 w-full flex items-center justify-center">
+                  <p className="text-black text-sm">No image available</p>
+                </div>
+              )}
             </article>
             <article>
               <h1 className="text-3xl font-bold text-black mb-8 lg:text-5xl">
