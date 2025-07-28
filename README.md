@@ -1,6 +1,6 @@
-# API-RICK-AND-MORTY
+# The Dog Api
 
-this project was developed with the [Api Rick And Morty](https://docs.thedogapi.com/).
+this project was developed with the [The Dog Api](https://docs.thedogapi.com/).
 
 the project is developed in [Reactjs](https://reactjs.org/) and [Tailwindcss](https://tailwindcss.com/docs/installation) and [vitejs](https://es.vitejs.dev/guide/) packaging.
 
